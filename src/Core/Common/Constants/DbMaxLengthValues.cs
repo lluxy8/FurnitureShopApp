@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Common.Values
+namespace Core.Common.Constants
 {
     public class DbMaxLengthValues
     {
         public const int Name = 50;
 
-        public const int Password = 50;
+        public const int Password = 60;
 
         public const int Email = 100;
 

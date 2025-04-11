@@ -24,6 +24,12 @@ namespace Infrastructure.Data.Configurations
             builder.Property(c => c.Email)
                    .IsRequired()
                    .HasMaxLength(DbMaxLengthValues.Email);
+
+            builder.Property(c => c.PhoneNumber)
+                .HasMaxLength(DbMaxLengthValues.PhoneNumber);
+
+           builder.Property(c => c.Address)
+                   .HasMaxLength(DbMaxLengthValues.Address);
         }
     }
 }

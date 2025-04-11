@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Core.Entities.Write
 {
-    public class OrderItem : BaseEntity
+    public class OrderItemEntity : BaseEntity
     {
         public Guid OrderId { get; set; }
         public OrderEntity Order { get; set; } = null!;
