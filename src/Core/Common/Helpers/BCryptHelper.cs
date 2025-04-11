@@ -1,6 +1,6 @@
 ﻿using BCrypt.Net;
 
-namespace Core.Helpers
+namespace Core.Common.Helpers
 {
     public class BCryptHelper
     {

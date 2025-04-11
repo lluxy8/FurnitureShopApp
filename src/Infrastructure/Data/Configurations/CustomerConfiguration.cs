@@ -1,4 +1,4 @@
-﻿using Core.Common.Values;
+﻿using Core.Common.Constants;
 using Core.Entities.Write;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;

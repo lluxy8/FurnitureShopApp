@@ -19,7 +19,9 @@ namespace Infrastructure.Abstracts
 
         public async Task CommitTransactionAsync()
         {
-            if (_transaction == null) throw new InvalidOperationException();
+            if (_transaction == null)
+                throw new InvalidOperationException("Transaction has not been started.");
+
             try
             {
                 await SaveChangesAsync();
@@ -36,6 +38,7 @@ namespace Infrastructure.Abstracts
                 _transaction = null;
             }
         }
+
 
         public async Task RollbackTransactionAsync()
         {
