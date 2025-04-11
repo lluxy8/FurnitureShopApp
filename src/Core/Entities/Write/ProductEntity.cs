@@ -9,7 +9,7 @@ namespace Core.Entities.Write
         public required string Description { get; set; }
         public required decimal Price { get; set; }
         public IEnumerable<ProductImagesEntity> Images { get; set; } = [];
-        public Guid SubCategoryId { get; set; }
-        public SubCategoryEntity SubCategory { get; set; } = null!;
+        public Guid CategoryId { get; set; }
+        public SubCategoryEntity Category { get; set; } = null!;
     }
 }
