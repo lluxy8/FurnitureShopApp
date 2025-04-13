@@ -9,11 +9,10 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence.Repositories
 {
-    public abstract class ReadRepository<T> : RepositoryBase<ReadDbContext, T>
+    public class ReadRepository<T> : RepositoryBase<ReadDbContext, T>, IReadRepository<T>
         where T : BaseEntity
     {
-        public ReadRepository(ReadDbContext context) : base(context)
-        {
-        }
+        public ReadRepository(ReadDbContext context) : base(context) { }
     }
+
 }

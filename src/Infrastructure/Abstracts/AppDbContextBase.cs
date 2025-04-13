@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Infrastructure.Abstracts
 {
-    public abstract class AppDbContextBase : DbContext, IAppDbContext
+    public abstract class AppDbContextBase<T> : DbContext, IAppDbContext where T : DbContext
     {
         private IDbContextTransaction? _transaction;
 
-        protected AppDbContextBase(DbContextOptions options) : base(options)
+        public AppDbContextBase(DbContextOptions<T> options) : base(options)
         {
         }
 

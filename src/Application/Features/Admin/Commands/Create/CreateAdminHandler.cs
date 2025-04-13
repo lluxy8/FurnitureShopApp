@@ -1,39 +1,32 @@
 ﻿using Core.Common.Helpers;
 using Core.Entities.Read;
 using Core.Entities.Write;
-using Infrastructure.Data;
+using Infrastructure.Abstracts;
 using Infrastructure.Persistence.Repositories;
 
 namespace Application.Features.Admin.Commands.Create
 {
-    public class CreateAdminHandler
+    public static class CreateAdminHandler
     {
-        private readonly WriteRepository<AdminEntity> _adminRepo;
-        private readonly WriteDbContext _writeDb;
-
-        public CreateAdminHandler(WriteRepository<AdminEntity> adminRepo, WriteDbContext writeDb)
+        public static async Task<AdminCreated> Handle(
+            CreateAdmin command,
+            IWriteRepository<AdminEntity> adminRepo) 
         {
-            _adminRepo = adminRepo;
-            _writeDb = writeDb;
-        }
-
-        public async Task<AdminCreated> Handle(CreateAdmin command)
-        {
-            var Admin = new AdminEntity
+            var admin = new AdminEntity
             {
                 Id = Guid.NewGuid(),
                 Username = command.Username,
                 PasswordHash = BCryptHelper.HashPassword(command.Password)
             };
 
-            await _adminRepo.AddAsync(Admin);
+            await adminRepo.AddAsync(admin);
 
-
+            Console.WriteLine("[Merhaba From CreateAdminHandler]");
             return new AdminCreated(
                 new AdminRead
                 {
-                    Id = Admin.Id,
-                    Username = Admin.Username,
+                    Id = admin.Id,
+                    Username = admin.Username,
                     CreateDate = DateTime.UtcNow,
                     IsDeleted = false,
                 }

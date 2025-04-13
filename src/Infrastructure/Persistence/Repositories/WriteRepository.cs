@@ -9,12 +9,10 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence.Repositories
 {
-    public abstract class WriteRepository<T> : RepositoryBase<WriteDbContext, T> 
+    public class WriteRepository<T> : RepositoryBase<WriteDbContext, T>, IWriteRepository<T>
         where T : BaseEntity
     {
-        public WriteRepository(WriteDbContext context) : base(context)
-        {
-        }
+        public WriteRepository(WriteDbContext context) : base(context) { }
     }
 
 }

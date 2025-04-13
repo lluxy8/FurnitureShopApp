@@ -12,6 +12,4 @@ namespace Core.Interfaces
 
     public interface IQuery { }
 
-    public interface IMiddleware { }
-
 }

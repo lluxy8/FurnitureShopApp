@@ -1,21 +1,18 @@
 ﻿using Core.Common.Results;
 using Core.Entities.Read;
-using Core.Entities.Write;
+using Infrastructure.Abstracts;
 using Infrastructure.Persistence.Repositories;
 
 namespace Application.Features.Admin.Commands.Create
 {
-    public class AdminCreatedHandler
+    public static class AdminCreatedHandler
     {
-        private readonly ReadRepository<AdminRead> _adminRepo;
-
-        public AdminCreatedHandler(ReadRepository<AdminRead> adminRepo)
+        public static async Task<Result<Guid>> Handle(
+            AdminCreated @event,
+            IReadRepository<AdminRead> adminRepo,
+            CancellationToken cancellationToken)
         {
-            _adminRepo = adminRepo;
-        }
-        public async Task<Result<Guid>> Handle(AdminCreated @event, CancellationToken cancellationToken)
-        {
-            await _adminRepo.AddAsync(new AdminRead
+            await adminRepo.AddAsync(new AdminRead
             {
                 Id = @event.Request.Id,
                 Username = @event.Request.Username,
@@ -23,7 +20,7 @@ namespace Application.Features.Admin.Commands.Create
                 IsDeleted = @event.Request.IsDeleted
             }, cancellationToken);
 
-
+            Console.WriteLine("[Merhaba From AdminCreatedHandler]");
             return Result<Guid>.Success(@event.Request.Id);
         }
     }

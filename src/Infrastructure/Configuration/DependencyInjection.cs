@@ -1,4 +1,8 @@
-﻿using Infrastructure.Data;
+﻿using Core.Entities.Read;
+using Core.Entities.Write;
+using Infrastructure.Abstracts;
+using Infrastructure.Data;
+using Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +23,10 @@ namespace Infrastructure.Configuration
 
             services.AddDbContext<WriteDbContext>(options => options
                 .UseSqlServer(configuration.GetConnectionString("WriteDb")));
+
+            services.AddScoped(typeof(IReadRepository<>), typeof(ReadRepository<>));
+            services.AddScoped(typeof(IWriteRepository<>), typeof(WriteRepository<>));
+
 
             return services;
         }
